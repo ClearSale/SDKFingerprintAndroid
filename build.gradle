@@ -1,0 +1,38 @@
+
+buildscript {
+    repositories {
+        google()
+        maven {
+            url 'https://maven.google.com/'
+            name 'Google'
+        }
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.0.2'
+
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+
+        maven {
+            url 'https://pkgs.dev.azure.com/PublicPackagesCS/Behavior/_packaging/BehaviorAnalytics.SDK/maven/v1'
+            name 'BehaviorAnalytics.SDK.Android'
+        }
+
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.compilerArgs << '-Xlint:unchecked'
+    options.deprecation = true
+}
+
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
